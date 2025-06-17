@@ -1,0 +1,21 @@
+jobs:
+    build:
+        runs-on: ubuntu-24.04
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - name: Build docker image
+              run: make build
+
+            - name: Build app
+              run: make prod
+
+            - name: Update repo
+              uses: stefanzweifel/git-auto-commit-action@v4
+              with:
+                commit_message: "${{ env.GIT_COMMIT_MSG }}"
+                branch: main
+                file_pattern: db deb packages
