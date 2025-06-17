@@ -20,4 +20,4 @@ jobs:
               with:
                 commit_message: "Auto build"
                 branch: master
-                file_pattern: build/production/JsonViewer
+                #file_pattern: build/production/JsonViewer
